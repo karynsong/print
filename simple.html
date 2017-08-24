@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<head>
+		<title>print demo</title>
+	</head>
+	<body>
+			<input id="btnPrint1" type="button" value="打印"/>    
+			<input id="btnPrint2" type="button" value="打印预览" class="print"/>
+			<div class="print111">
+			    <img  class="print" src="http://img1.qunarzz.com/tuan/team/2015/0331/14277737118855.jpg" alt="">
+				<p class="print">不需要打印的地方</p>    
+				<!--startprint-->
+				<p class="print">这里是第一处</p>
+				<p>需要打印的地方</p> 
+				<p class="print">可能还不止一行</p> 
+
+				<p>这里是第二处</p>
+				<p class="print">需要打印的地方</p> 
+				<p>可能还不止一行</p> 
+				<!--endprint-->
+			</div>
+	</body>
+	<script src="http://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		function preview(){
+			bdhtml = window.document.body.innerHTML; 
+			sprnstr = "<!--startprint-->"; 
+			eprnstr = "<!--endprint-->"; 
+			prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr)+17); 		//这里会有问题啦，只是一个简单的demo啦。
+			prnhtml = prnhtml.substring(0,prnhtml.indexOf(eprnstr)); 
+			window.document.body.innerHTML = prnhtml; 
+			window.print();
+			window.document.body.innerHTML = bdhtml; 
+		}
+		$("#btnPrint1").on("click",function(){
+			preview()
+		})
+	</script>
+</html>
